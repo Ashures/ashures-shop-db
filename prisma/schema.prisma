@@ -17,8 +17,8 @@ model User {
   emailAddress    String       @unique
   username        String       @unique
   password        String
-  token           String       @unique
-  registered      Boolean
+  token           String       @default("")
+  registered      Boolean      @default(false)
   createdAt       DateTime     @default(now())
   updatedAt       DateTime     @updatedAt
 }
