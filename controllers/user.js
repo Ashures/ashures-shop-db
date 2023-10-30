@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import apiShell from "../utils/apiShell";
+import apiShell from "../utils/apiShell.js";
 
 const prisma = new PrismaClient();
 
