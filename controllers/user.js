@@ -9,14 +9,7 @@ const createUser = async (req, res) => {
       "data": { ...req.body },
     });
 
-    const newUser = await prisma.user.findUnique({
-      "where": { "id": Number(req.params.id) },
-    });
-
-    return res.status(200).json({
-      "msg": "User successfully created!",
-      "data": newUser,
-    });
+    return res.status(200).json({ "msg": "User successfully created!" });
   });
 };
 
