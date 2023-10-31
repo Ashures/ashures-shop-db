@@ -6,7 +6,6 @@ const prisma = new PrismaClient();
 
 const createUser = async (req, res) => {
   req.body["password"] = await hash(req.body["password"]);
-  req.body["token"] = await hash(req.body["username"]);
 
   await apiShell(res, async () => {
     await prisma.user.create({
