@@ -12,12 +12,12 @@ datasource db {
 
 model User {
   id              Int          @id @default(autoincrement())
+  icon            String       
   firstName       String
   lastName        String
   emailAddress    String       @unique
   username        String       @unique
   password        String
-  token           String       @default("")
   registered      Boolean      @default(false)
   createdAt       DateTime     @default(now())
   updatedAt       DateTime     @updatedAt
