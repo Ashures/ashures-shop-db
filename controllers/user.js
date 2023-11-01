@@ -5,10 +5,9 @@ import hash from "../utils/hash.js";
 const prisma = new PrismaClient();
 
 const createUser = async (req, res) => {
-  const colours = [ "e7e6f7", "e3d0d8", "aea3b0", "827081", "c6d2ed" ];
-
-  if (!req.body["icon"]) req.body["icon"]= `https://source.boringavatars.com/ring/120/?colors=${colours[0]},${colours[1]},${colours[2]},${colours[3]},${colours[4]}`;
   req.body["password"] = await hash(req.body["password"]);
+  
+  if (!req.body["icon"]) req.body["icon"] = `https://api.dicebear.com/7.x/avataaars-neutral/svg?seed=${req.body["username"]}&scale=90`;
 
   await apiShell(res, async () => {
     await prisma.user.create({
