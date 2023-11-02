@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import apiShell from "../utils/apiShell.js";
-import hash from "../utils/hash.js";
+import apiShell from "../../utils/apiShell.js";
+import hash from "../../utils/hash.js";
 
 const prisma = new PrismaClient();
 
