@@ -30,9 +30,11 @@ const getUsers = async (req, res) => {
 
 const getUser = async (req, res) => {
   await apiShell(res, async () => {
-    const user = await prisma.user.findUnique({
-      "where": { "username": req.params.id }
-    });
+    const user = isNaN(req.params.id)
+      ?
+        await prisma.user.findUnique({ "where": { "username": req.params.id } })
+      :
+        await prisma.user.findUnique({ "where": { "id": Number(req.params.id) }});
 
     if (!user) return res.status(404).json({ "msg": `No user with id: ${req.params.id} found` });
 
