@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 const createUser = async (req, res) => {
   req.body["password"] = await hash(req.body["password"]);
   
-  if (!req.body["icon"]) req.body["icon"] = `https://api.dicebear.com/7.x/avataaars-neutral/svg?seed=${req.body["username"]}&scale=90`;
+  if (!req.body["icon"]) req.body["icon"] = `https://api.dicebear.com/7.x/avataaars-neutral/svg?seed=${req.body["username"]}&scale=80`;
 
   await apiShell(res, async () => {
     await prisma.user.create({
@@ -31,7 +31,7 @@ const getUsers = async (req, res) => {
 const getUser = async (req, res) => {
   await apiShell(res, async () => {
     const user = await prisma.user.findUnique({
-      "where": { "id": Number(req.params.id) }
+      "where": { "username": req.params.id }
     });
 
     if (!user) return res.status(404).json({ "msg": `No user with id: ${req.params.id} found` });
