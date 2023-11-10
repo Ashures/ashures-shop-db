@@ -10,22 +10,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id              Int           @id @default(autoincrement())
-  icon            String       
-  firstName       String
-  lastName        String
-  emailAddress    String        @unique
-  username        String        @unique
-  password        String
-  registered      Boolean       @default(false)
-  role            Role          @default(USER)
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
+model Store {
+  id            Int           @id @default(autoincrement())
+  name          String
+  description   String
+  products      Product[]
+  owner         String
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 }
 
-enum Role {
-  USER
-  ADMIN
-  OWNER
+model Product {
+  id            Int           @id @default(autoincrement())
+  storeId       Int     
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  store         Store         @relation(fields: [storeId], references: [id], onDelete: Cascade)
 }
